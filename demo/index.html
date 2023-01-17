@@ -18,11 +18,14 @@
     import '../lit-card.js';
 
     // const title = 'Hello owc World!';
+    const image = "https://via.placeholder.com/287x180?text=Placeholder+Image";
     render(
       html`
-        <lit-card header="Cabecera" footer="Pie de página">
-          <slot>Contenido de mi card</slot>
-        </lit-card>
+        <div style="width: 18rem">
+          <lit-card footer="Pie de página" img=${image}>
+            <p>Contenido de mi card</p>
+          </lit-card>
+        </div>
       `,
       document.querySelector('#demo')
     );

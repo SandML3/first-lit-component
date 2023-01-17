@@ -19,11 +19,14 @@
 
     // const title = 'Hello owc World!';
     const image = "https://via.placeholder.com/287x180?text=Placeholder+Image";
+    const handleCardEvent = () => {
+      console.log('Button clicked')
+    }
     render(
       html`
         <div style="width: 18rem">
-          <lit-card footer="Pie de página" img=${image}>
-            <p>Contenido de mi card</p>
+          <lit-card footer="Footer" img=${image}  @card-action=${handleCardEvent} >
+            <p>Card content</p>
           </lit-card>
         </div>
       `,

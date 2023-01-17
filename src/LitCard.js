@@ -51,6 +51,35 @@ export class LitCard extends LitElement {
       border-top-left-radius: calc(0.25rem - 1px);
       border-top-right-radius: calc(0.25rem - 1px);
     }
+
+    .card-action {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 0.25rem;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      color: var(--action-button-color, #fff);
+      background-color: var(--action-button-bg, #007bff);
+      border-color: var(--action-button-bg, #007bff);
+      cursor: pointer;
+    }
+
+    .card-action:hover {
+      color: var(--action-button-color, #fff);
+      background-color: var(--action-button-bg-hover, #0069d9);
+      border-color: var(--action-button-border-hover, #0062cc);
+    }
   `;
 
   static properties = {
@@ -59,11 +88,13 @@ export class LitCard extends LitElement {
     header: { type: String },
     footer: { type: String },
     img: { type: String },
+    action: { type: String },
   };
 
   constructor() {
     super();
     this.title = 'Card title';
+    this.action = 'Accept';
   }
 
   render() {
@@ -78,11 +109,21 @@ export class LitCard extends LitElement {
         <div class="card-body">
           <h5>${this.title}</h5>
           <slot></slot>
+          ${this.action
+            ? html`<button class="card-action" @click=${this.handleAction}>
+                ${this.action}
+              </button>`
+            : ''}
         </div>
         ${this.footer
           ? html`<div class="card-footer">${this.footer}</div>`
           : ''}
       </div>
     `;
+  }
+
+  handleAction() {
+    const event = new CustomEvent('card-action');
+    this.dispatchEvent(event);
   }
 }

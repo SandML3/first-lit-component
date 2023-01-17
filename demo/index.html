@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo"></div>
+
+  <script type="module">
+    import { html, render } from 'lit';
+    import '../lit-card.js';
+
+    // const title = 'Hello owc World!';
+    render(
+      html`
+        <lit-card header="Cabecera" footer="Pie de página">
+          <slot>Contenido de mi card</slot>
+        </lit-card>
+      `,
+      document.querySelector('#demo')
+    );
+  </script>
+</body>
+
+</html>
